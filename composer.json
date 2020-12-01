@@ -1,0 +1,19 @@
+{
+  "name": "kloos/oc-saas-plugin",
+  "type": "october-plugin",
+  "description": "SaaS plugin for October CMS",
+  "keywords": ["october", "octobercms", "saas"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Sebastiaan Kloos",
+      "email": "sebastiaan@kloos.dev"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "composer/installers": "~1.0",
+    "lorisleiva/laravel-actions": "v1.2.0"
+  },
+  "minimum-stability": "dev"
+}
