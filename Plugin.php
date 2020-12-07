@@ -7,9 +7,9 @@ class Plugin extends PluginBase
     public function pluginDetails()
     {
         return [
-            'name' => 'kloos.saas::lang.plugin.name',
-            'description' => 'kloos.saas::lang.plugin.description',
-            'author' => 'kloos.saas::lang.plugin.author',
+            'name'          => 'kloos.saas::lang.plugin.name',
+            'description'   => 'kloos.saas::lang.plugin.description',
+            'author'        => 'kloos.saas::lang.plugin.author',
         ];
     }
 
