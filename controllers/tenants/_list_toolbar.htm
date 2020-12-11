@@ -1,0 +1,28 @@
+<div data-control="toolbar">
+    <a
+        href="<?= Backend::url('kloos/saas/tenants/create') ?>"
+        class="btn btn-primary oc-icon-plus">
+        New Tenant
+    </a>
+
+    <button
+        class="btn btn-danger oc-icon-trash-o"
+        disabled="disabled"
+        onclick="$(this).data('request-data', { checked: $('.control-list').listWidget('getChecked') })"
+        data-request="onDelete"
+        data-request-confirm="Are you sure you want to delete the selected Tenants?"
+        data-trigger-action="enable"
+        data-trigger=".control-list input[type=checkbox]"
+        data-trigger-condition="checked"
+        data-request-success="$(this).prop('disabled', 'disabled')"
+        data-stripe-load-indicator>
+        Delete selected
+    </button>
+
+    <button
+        type="button"
+        data-request="onUpdateDatabase"
+        data-load-indicator="<?= e(trans('kloos.saas::lang.toolbar.loading.migrate_db')) ?>"
+        data-request-confirm="<?= e(trans('kloos.saas::lang.toolbar.confirm.migrate_db')) ?>"
+        class="btn btn-success oc-icon-upload"><?= e(trans('kloos.saas::lang.toolbar.migrate_db')) ?></button>
+</div>

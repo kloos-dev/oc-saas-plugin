@@ -3,6 +3,11 @@
 # ===================================
 
 columns:
-    id:
-        label: ID
+    slug:
+        label: Slug
         searchable: true
+        sortable: true
+    name:
+        label: Name
+        searchable: true
+        sortable: true

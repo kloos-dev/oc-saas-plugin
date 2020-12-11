@@ -1,1 +1,11 @@
 1.0.1: First version of the SaaS plugin
+1.0.2:
+  - Run migrations
+  - create_tenants_table.php
+1.0.3:
+  - Added settings for tenants
+  - Added status for tenants
+  - update_tenants_table.php
+1.0.4:
+  - Added user tenant relation
+  - create_tenants_users_table.php

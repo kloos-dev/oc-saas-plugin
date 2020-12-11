@@ -10,7 +10,9 @@ class ResolveTenantByDomainMiddleware
 	{
 		$domain = $request->getHost();
 		$tenant = TenantModel::byDomain($domain);
-		Tenant::switch($tenant);
+		$tenant = $tenant ? $tenant : new TenantModel;
+
+		Tenant::instance()->switch($tenant);
 	
 		return $next($request);
 	}

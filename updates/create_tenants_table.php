@@ -12,8 +12,11 @@ class CreateTenantsTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
 
-            $table->string('')->nullable();
+            $table->string('name')->nullable();
+            $table->string('slug')->nullable();
+            $table->string('domain')->nullable();
 
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

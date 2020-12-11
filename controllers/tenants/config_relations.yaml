@@ -1,0 +1,7 @@
+users:
+  label: user
+  manage:
+    form: $/kloos/saas/controllers/tenants/backend_user_fields.yaml
+  view:
+    toolbarButtons: create|delete|link|unlink
+    list: ~/modules/backend/models/user/columns.yaml

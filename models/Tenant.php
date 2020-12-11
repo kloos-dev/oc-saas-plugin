@@ -1,6 +1,9 @@
 <?php namespace Kloos\Saas\Models;
 
 use Model;
+use Backend\Models\User;
+use Kloos\Saas\Classes\DatabaseManager;
+use Kloos\Multitenancy\Classes\Item\Database;
 
 /**
  * Tenant Model
@@ -37,7 +40,9 @@ class Tenant extends Model
     /**
      * @var array Attributes to be cast to JSON
      */
-    protected $jsonable = [];
+    protected $jsonable = [
+        'settings',
+    ];
 
     /**
      * @var array Attributes to be appended to the API representation of the model (ex. toArray())
@@ -65,10 +70,52 @@ class Tenant extends Model
     public $hasOneThrough = [];
     public $hasManyThrough = [];
     public $belongsTo = [];
-    public $belongsToMany = [];
+
+    public $belongsToMany = [
+        'users' => [
+            User::class,
+            'table' => 'kloos_saas_tenants_users',
+            'key' => 'tenant_id',
+            'otherKey' => 'user_id',
+        ],
+    ];
+
     public $morphTo = [];
     public $morphOne = [];
     public $morphMany = [];
-    public $attachOne = [];
+
+    public $attachOne = [
+        'image' => 'System\Models\File',
+    ];
+
     public $attachMany = [];
+
+    public static function byDomain($domainName)
+    {
+        return static::where('domain', $domainName)->first();
+    }
+
+    public static function bySlug($slug)
+    {
+        return static::where('slug', $slug)->first();
+    }
+
+    public function getDatabaseStatusAttribute()
+    {
+        return 'active';
+    }
+
+    public function getCountBackendUsersAttribute()
+    {
+        $dm = new DatabaseManager();
+        $dm->switch($this->slug);
+
+        $users = User::on('tenant')
+            ->get()
+            ->count();
+
+        $dm->reset();
+
+        return $users;
+    }
 }

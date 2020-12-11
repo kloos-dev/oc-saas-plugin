@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Tenant
+
+# Model Form Field configuration
+form: $/kloos/saas/models/tenant/fields.yaml
+
+# Model Class name
+modelClass: Kloos\Saas\Models\Tenant
+
+# Default redirect location
+defaultRedirect: kloos/saas/tenants
+
+# Create page
+create:
+    title: Create Tenant
+    redirect: kloos/saas/tenants/update/:id
+    redirectClose: kloos/saas/tenants
+
+# Update page
+update:
+    title: Edit Tenant
+    redirect: kloos/saas/tenants
+    redirectClose: kloos/saas/tenants
+
+# Preview page
+preview:
+    title: Preview Tenant

@@ -5,6 +5,4 @@ class ApplicationContainer
     public function __construct()
     {
     }
-
-
 }
