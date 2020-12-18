@@ -38,11 +38,54 @@ class Tenant
 
     public function registerModel($model)
     {
+        if (in_array($model, $this->tenantModels)) {
+            return;
+        }
+
         $this->tenantModels[] = $model;
     }
 
     public function getModels()
     {
         return $this->tenantModels;
+    }
+
+    public function getControllerConfig()
+    {
+        $config = [
+            'backend_users' => [
+                'label' => 'User',
+                'manage' => [
+                    'form' => '$/kloos/saas/controllers/tenants/backend_user_fields.yaml',
+                ],
+                'view' => [
+                    'toolbarButtons' => [
+                        'create',
+                        'delete',
+                        'link',
+                        'unlink',
+                    ],
+                    'list' => '~/modules/backend/models/user/columns.yaml',
+                ],
+            ],
+        ];
+
+        foreach ($this->getModels() as $model) {
+            $explodedModelName = explode('\\', $model);
+            $modelName = 'Test';
+
+            // Add the model to the config
+            $modelConfig = [
+                snake_case($model) => [
+                    'label' => strtolower($explodedModelName[count($explodedModelName)[-1]])
+                ],
+            ];
+
+            $config = array_merge($config, $modelConfig);
+        }
+
+        dd($config);
+
+        return $config;
     }
 }

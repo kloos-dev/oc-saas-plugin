@@ -7,6 +7,7 @@ use BackendAuth;
 use System\Classes\PluginBase;
 use Kloos\Saas\Console\FreshTenant;
 use Kloos\Saas\Console\MigrateTenant;
+use Kloos\Saas\Classes\Extend\ExtendTenant;
 use Kloos\Saas\Classes\Extend\ExtendBackendUser;
 
 class Plugin extends PluginBase
@@ -37,8 +38,6 @@ class Plugin extends PluginBase
                     ],
                 ]);
             }
-
-            $manager->removeQuickActionItem('October.Cms', 'preview');
         });
 
         $this->registerEvents();
@@ -46,15 +45,16 @@ class Plugin extends PluginBase
 
     public function registerEvents()
     {
+        Event::subscribe(ExtendTenant::class);
         Event::subscribe(ExtendBackendUser::class);
     }
 
     public function registerPermissions()
     {
         return [
-            'kloos.workflow.some_permission' => [
-                'tab' => 'Workflow',
-                'label' => 'Some permission'
+            'kloos.saas.manage_tenants' => [
+                'tab' => 'Tenants',
+                'label' => 'Manage tenants'
             ],
         ];
     }

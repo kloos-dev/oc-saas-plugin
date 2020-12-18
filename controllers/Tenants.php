@@ -46,23 +46,6 @@ class Tenants extends Controller
         SettingsManager::setContext('Kloos.Saas', 'tenants');
     }
 
-    public function onRefreshDatabase($id)
-    {
-        Artisan::call('tenant:fresh', ['tenantId' => $id]);
-        Flash::success('Successfully refreshed the database!');
-    }
-
-    public function onUpdateDatabase($id = null)
-    {
-        if ($id === null) {
-            Artisan::call('tenant:migrate');
-            Flash::success('Successfully migrated all databases!');
-        } else {
-            Artisan::call('tenant:migrate', ['tenantId' => $id]);
-            Flash::success('Successfully migrated the database!');
-        }
-    }
-
     public function create()
     {
         $this->bodyClass = 'compact-container';

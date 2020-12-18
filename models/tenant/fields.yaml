@@ -10,13 +10,6 @@ fields:
         context:
             - preview
             - update
-    field_toolbar:
-        label: ''
-        span: full
-        type: partial
-        context:
-            - preview
-            - update
     name:
         label: kloos.saas::lang.fields.name
         span: left
@@ -29,7 +22,6 @@ fields:
             field: name
             type: slug
 
-
 tabs:
     icons:
         kloos.saas::lang.tab.users: icon-users
@@ -40,7 +32,6 @@ tabs:
             type: partial
             path: field_users
             tab: kloos.saas::lang.tab.users
-
 
 secondaryTabs:
     fields:
