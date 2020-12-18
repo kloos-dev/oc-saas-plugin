@@ -23,6 +23,8 @@ class AttachedToTenant extends ExtensionBase
                 $model->tenants()->add($active, $sessionKey);
             }
         });
+
+        \Kloos\Saas\Classes\Tenant::instance()->registerModel(get_class($this->parent));
     }
 
     protected function attachModelToTenantModel()
