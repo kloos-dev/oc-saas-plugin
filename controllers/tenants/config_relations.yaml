@@ -1,4 +1,4 @@
-users:
+backend_users:
   label: user
   manage:
     form: $/kloos/saas/controllers/tenants/backend_user_fields.yaml

@@ -9,22 +9,16 @@ class Tenant
 {
     use Singleton;
 
-    protected $databaseManager;
+
+    protected $tenantModels = [];
 
     public function init()
     {
-        $this->databaseManager = new DatabaseManager;
     }
 
     public function switch(TenantModel $tenant)
     {
         Session::put('active_tenant_slug', $tenant->slug);
-        $this->databaseManager->switch($tenant->slug);
-    }
-
-    public function getDatabaseName()
-    {
-        return $this->databaseManager->databaseName;
     }
 
     public function active()
@@ -39,7 +33,16 @@ class Tenant
 
     public function forget()
     {
-        $this->databaseManager->reset();
         Session::forget('active_tenant_slug');
+    }
+
+    public function registerModel($model)
+    {
+        $this->tenantModels[] = $model;
+    }
+
+    public function getModels()
+    {
+        return $this->tenantModels;
     }
 }

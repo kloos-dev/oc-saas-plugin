@@ -1,0 +1,16 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+  name:
+    label: kloos.saas::lang.fields.name
+    span: left
+    type: text
+  slug:
+    label: kloos.saas::lang.fields.slug
+    span: right
+    type: text
+    preset:
+      field: name
+      type: slug

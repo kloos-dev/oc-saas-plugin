@@ -6,14 +6,14 @@ use Kloos\Saas\Models\Tenant as TenantModel;
 
 class ResolveTenantByDomainMiddleware
 {
-	public function handle($request, Closure $next)
-	{
-		$domain = $request->getHost();
-		$tenant = TenantModel::byDomain($domain);
-		$tenant = $tenant ? $tenant : new TenantModel;
+    public function handle($request, Closure $next)
+    {
+        $domain = $request->getHost();
+        $tenant = TenantModel::byDomain($domain);
+        $tenant = $tenant ? $tenant : new TenantModel;
 
-		Tenant::instance()->switch($tenant);
-	
-		return $next($request);
-	}
+        Tenant::instance()->switch($tenant);
+
+        return $next($request);
+    }
 }

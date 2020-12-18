@@ -2,7 +2,6 @@
 
 use Model;
 use Backend\Models\User;
-use Kloos\Saas\Classes\DatabaseManager;
 use Kloos\Multitenancy\Classes\Item\Database;
 
 /**
@@ -70,19 +69,22 @@ class Tenant extends Model
     public $hasOneThrough = [];
     public $hasManyThrough = [];
     public $belongsTo = [];
-
-    public $belongsToMany = [
-        'users' => [
-            User::class,
-            'table' => 'kloos_saas_tenants_users',
-            'key' => 'tenant_id',
-            'otherKey' => 'user_id',
-        ],
-    ];
-
     public $morphTo = [];
     public $morphOne = [];
     public $morphMany = [];
+
+    /**
+     * Morphed by many relations
+     *
+     * @var \string[][]
+     */
+    public $morphedByMany = [
+        'backend_users' => [
+            User::class,
+            'name' => 'tenant_relation',
+            'table' => 'kloos_saas_tenants_relations',
+        ],
+    ];
 
     public $attachOne = [
         'image' => 'System\Models\File',
@@ -98,24 +100,5 @@ class Tenant extends Model
     public static function bySlug($slug)
     {
         return static::where('slug', $slug)->first();
-    }
-
-    public function getDatabaseStatusAttribute()
-    {
-        return 'active';
-    }
-
-    public function getCountBackendUsersAttribute()
-    {
-        $dm = new DatabaseManager();
-        $dm->switch($this->slug);
-
-        $users = User::on('tenant')
-            ->get()
-            ->count();
-
-        $dm->reset();
-
-        return $users;
     }
 }

@@ -9,3 +9,6 @@
 1.0.4:
   - Added user tenant relation
   - create_tenants_users_table.php
+1.0.5:
+  - Added polymorphic relations for tenants for single database usage
+  - create_tenants_relations_table.php
