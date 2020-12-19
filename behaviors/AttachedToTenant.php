@@ -27,7 +27,9 @@ class AttachedToTenant extends ExtensionBase
 
         \Kloos\Saas\Classes\Tenant::instance()->registerModel(get_class($this->parent));
 
-        $this->registerGlobalScope();
+        if (!$this->parent->scopeBlacklist && \Kloos\Saas\Classes\Tenant::instance()->active()) {
+            $this->registerGlobalScope();
+        }
     }
 
     protected function registerGlobalScope()

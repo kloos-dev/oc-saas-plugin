@@ -17,8 +17,12 @@ class Tenant
     {
     }
 
-    public function switch(TenantModel $tenant)
+    public function switch($tenant)
     {
+        if (!$tenant) {
+            return;
+        }
+
         Session::put('active_tenant_slug', $tenant->slug);
         $this->activeTenant = $tenant;
     }
@@ -62,8 +66,6 @@ class Tenant
                 ],
                 'view' => [
                     'toolbarButtons' => [
-                        'create',
-                        'delete',
                         'link',
                         'unlink',
                     ],
@@ -86,8 +88,11 @@ class Tenant
             $config = array_merge($config, $modelConfig);
         }
 
-        dd($config);
-
         return $config;
+    }
+
+    public function disableScopes()
+    {
+        return str_contains(request()->url(), 'backend/auth');
     }
 }

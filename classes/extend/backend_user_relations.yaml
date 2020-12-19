@@ -1,7 +1,7 @@
 tenants:
   label: Tenants
   view:
-    toolbarButtons: false
+    toolbarButtons: link|unlink
     list: $/kloos/saas/models/tenant/columns.yaml
   manage:
     form: $/kloos/saas/models/tenant/fields_without_relations.yaml

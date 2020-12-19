@@ -23,25 +23,7 @@ class ExtendBackendUser
 
         Users::extend(function (Controller $controller) {
             $controller->implement[] = 'Backend\Behaviors\RelationController';
-            $controller->addDynamicMethod('relationConfig', '$/kloos/saas/classes/extend/backend_user_relations.yaml');
-        });
-
-        Event::listen('backend.form.extendFields', function (Form $formWidget) {
-            if (!$formWidget->getController() instanceof Users) {
-                return;
-            }
-
-            if (!$formWidget->model instanceof User) {
-                return;
-            }
-
-            $fields = [
-                'tenants' => [
-                    'label' => 'Tenants',
-                    'type' => 'partial',
-                    'path' => '$/kloos/saas/classes/extend/partials/_extend_backend_user.htm',
-                ],
-            ];
+            $controller->addDynamicProperty('relationConfig', '$/kloos/saas/classes/extend/backend_user_relations.yaml');
         });
     }
 

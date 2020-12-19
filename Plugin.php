@@ -14,6 +14,8 @@ use Kloos\Saas\Classes\Extend\ExtendBackendUser;
 
 class Plugin extends PluginBase
 {
+    public $elevated = true;
+
     public function pluginDetails()
     {
         return [
@@ -60,7 +62,7 @@ class Plugin extends PluginBase
     {
         return [
             'kloos.saas.manage_tenants' => [
-                'tab' => 'Tenants',
+                'tab' => 'SaaS',
                 'label' => 'Manage tenants'
             ],
         ];
@@ -81,6 +83,7 @@ class Plugin extends PluginBase
                 'url'         => Backend::url('kloos/saas/tenants'),
                 'order'       => 500,
                 'keywords'    => 'tenants multi tenancy saas organisation',
+                'permissions' => ['kloos.saas.manage_tenants'],
             ]
         ];
     }
