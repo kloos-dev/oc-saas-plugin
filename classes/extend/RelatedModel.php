@@ -16,7 +16,7 @@ class RelatedModel
             $matchedModel = false;
 
             foreach (Tenant::instance()->getModels() as $model) {
-                if ($model instanceof $formWidget->model) {
+                if ($model == get_class($formWidget->model)) {
                     $matchedModel = true;
                 }
             }

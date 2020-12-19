@@ -7,7 +7,9 @@ use BackendAuth;
 use System\Classes\PluginBase;
 use Kloos\Saas\Console\FreshTenant;
 use Kloos\Saas\Console\MigrateTenant;
+use Kloos\Saas\Classes\Extend\CmsPage;
 use Kloos\Saas\Classes\Extend\ExtendTenant;
+use Kloos\Saas\Classes\Extend\RelatedModel;
 use Kloos\Saas\Classes\Extend\ExtendBackendUser;
 
 class Plugin extends PluginBase
@@ -21,11 +23,14 @@ class Plugin extends PluginBase
         ];
     }
 
-    public function boot()
+    public function register()
     {
         $this->app['Illuminate\Contracts\Http\Kernel']
             ->pushMiddleware('Kloos\Saas\Classes\ResolveTenantByDomainMiddleware');
+    }
 
+    public function boot()
+    {
         BackendMenu::registerCallback(function (Backend\Classes\NavigationManager $manager) {
             $user = BackendAuth::getUser();
 
@@ -45,7 +50,9 @@ class Plugin extends PluginBase
 
     public function registerEvents()
     {
+        Event::subscribe(CmsPage::class);
         Event::subscribe(ExtendTenant::class);
+        Event::subscribe(RelatedModel::class);
         Event::subscribe(ExtendBackendUser::class);
     }
 

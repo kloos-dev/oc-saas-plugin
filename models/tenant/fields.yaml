@@ -21,6 +21,10 @@ fields:
         preset:
             field: name
             type: slug
+    domain:
+        label: kloos.saas::lang.fields.domain
+        span: left
+        type: text
 
 tabs:
     icons:

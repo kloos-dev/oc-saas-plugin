@@ -9,8 +9,9 @@ class Tenant
 {
     use Singleton;
 
-
     protected $tenantModels = [];
+
+    protected $activeTenant = null;
 
     public function init()
     {
@@ -19,6 +20,7 @@ class Tenant
     public function switch(TenantModel $tenant)
     {
         Session::put('active_tenant_slug', $tenant->slug);
+        $this->activeTenant = $tenant;
     }
 
     public function active()
@@ -27,7 +29,7 @@ class Tenant
             $slug = Session::get('active_tenant_slug');
             return TenantModel::bySlug($slug);
         } else {
-            // TODO: Resolve active tenant...
+            return $this->activeTenant;
         }
     }
 

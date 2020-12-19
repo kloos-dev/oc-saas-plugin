@@ -3,6 +3,7 @@
 use Model;
 use Form as FormHelper;
 use Kloos\Saas\Models\Tenant;
+use Kloos\Saas\Classes\TenantScope;
 use October\Rain\Extension\ExtensionBase;
 
 class AttachedToTenant extends ExtensionBase
@@ -25,6 +26,13 @@ class AttachedToTenant extends ExtensionBase
         });
 
         \Kloos\Saas\Classes\Tenant::instance()->registerModel(get_class($this->parent));
+
+        $this->registerGlobalScope();
+    }
+
+    protected function registerGlobalScope()
+    {
+        $this->parent->addGlobalScope(new TenantScope);
     }
 
     protected function attachModelToTenantModel()
