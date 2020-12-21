@@ -61,6 +61,10 @@ class Tenant extends Model
         'updated_at'
     ];
 
+    protected $with = [
+        'image',
+    ];
+
     /**
      * @var array Relations
      */
