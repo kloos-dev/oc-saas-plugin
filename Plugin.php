@@ -11,6 +11,7 @@ use Kloos\Saas\Classes\Extend\CmsPage;
 use Kloos\Saas\Classes\Extend\ExtendTenant;
 use Kloos\Saas\Classes\Extend\RelatedModel;
 use Kloos\Saas\Classes\Extend\ExtendBackendUser;
+use Kloos\Saas\Classes\Extend\ExtendRainLabUser;
 
 class Plugin extends PluginBase
 {
@@ -56,6 +57,7 @@ class Plugin extends PluginBase
         Event::subscribe(ExtendTenant::class);
         Event::subscribe(RelatedModel::class);
         Event::subscribe(ExtendBackendUser::class);
+        Event::subscribe(ExtendRainLabUser::class);
     }
 
     public function registerPermissions()

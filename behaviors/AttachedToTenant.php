@@ -14,8 +14,10 @@ class AttachedToTenant extends ExtensionBase
     {
         $this->parent = $parent;
         $this->attachModelToTenantModel();
-
         $model = $this->parent;
+
+        \Kloos\Saas\Classes\Tenant::instance()->registerModel(get_class($this->parent));
+
         $this->parent->bindEvent('model.beforeCreate', function () use ($model) {
             $active = \Kloos\Saas\Classes\Tenant::instance()->active();
             $sessionKey = FormHelper::getSessionKey();
@@ -23,9 +25,10 @@ class AttachedToTenant extends ExtensionBase
             if ($active) {
                 $model->tenants()->add($active, $sessionKey);
             }
-        });
 
-        \Kloos\Saas\Classes\Tenant::instance()->registerModel(get_class($this->parent));
+            //$model->save();
+        }, 1);
+
 
         if (!$this->parent->scopeBlacklist && \Kloos\Saas\Classes\Tenant::instance()->active()) {
             $this->registerGlobalScope();
