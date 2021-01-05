@@ -22,15 +22,16 @@ class ExtendBackendUser
         });
 
         Users::extend(function (Controller $controller) {
-            $controller->implement[] = 'Backend\Behaviors\RelationController';
-            $controller->addDynamicProperty('relationConfig', '$/kloos/saas/classes/extend/backend_user_relations.yaml');
+            if (!in_array('Backend\Behaviors\RelationController', $controller->implement)) {
+                $controller->implement[] = 'Backend\Behaviors\RelationController';
+                $controller->addDynamicProperty('relationConfig', '$/kloos/saas/classes/extend/backend_user_relations.yaml');
+            }
         });
     }
 
     protected function addImplements()
     {
         $model = $this->model;
-
         $model->implement[] = 'Kloos.Saas.Behaviors.AttachedToTenant';
     }
 
