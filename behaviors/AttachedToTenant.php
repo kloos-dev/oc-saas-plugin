@@ -16,17 +16,16 @@ class AttachedToTenant extends ExtensionBase
         $this->attachModelToTenantModel();
         $model = $this->parent;
 
-        \Kloos\Saas\Classes\Tenant::instance()->registerModel(get_class($this->parent));
+        \Kloos\Saas\Classes\Tenant::instance()
+            ->registerModel(get_class($this->parent));
 
         $this->parent->bindEvent('model.beforeCreate', function () use ($model) {
             $active = \Kloos\Saas\Classes\Tenant::instance()->active();
             $sessionKey = FormHelper::getSessionKey();
 
-            if ($active) {
+            if ($active && !$model->tenants->contains($active)) {
                 $model->tenants()->add($active, $sessionKey);
             }
-
-            //$model->save();
         }, 1);
 
 
