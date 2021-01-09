@@ -14,6 +14,10 @@ use Kloos\Saas\Classes\DatabaseManager;
  */
 class Tenants extends Controller
 {
+    public $requiredPermissions = [
+        'kloos.saas.manage_tenants',
+    ];
+
     /**
      * @var array Behaviors that are implemented by this controller.
      */
