@@ -5,6 +5,7 @@ use Backend;
 use BackendMenu;
 use BackendAuth;
 use System\Classes\PluginBase;
+use Kloos\Saas\Classes\Tenant;
 use Kloos\Saas\Console\FreshTenant;
 use Kloos\Saas\Console\MigrateTenant;
 use Kloos\Saas\Classes\Extend\CmsPage;
@@ -46,6 +47,17 @@ class Plugin extends PluginBase
                     ],
                 ]);
             }
+
+            if ($user->hasPermission('kloos.saas.manage_own_tenant') && !$user->isSuperUser()) {
+                $active = Tenant::instance()
+                    ->active();
+
+                $manager->addMainMenuItem('Kloos.Saas', 'own-tenant', [
+                    'label' => 'kloos.saas::lang.menu.own_tenant',
+                    'icon' => 'icon-building',
+                    'url' => Backend::url('kloos/saas/tenants/update/' . $active->id)
+                ]);
+            }
         });
 
         $this->registerEvents();
@@ -67,6 +79,10 @@ class Plugin extends PluginBase
                 'tab' => 'SaaS',
                 'label' => 'Manage tenants'
             ],
+            'kloos.saas.manage_own_tenant' => [
+                'tab' => 'SaaS',
+                'label' => 'Manage own tenant',
+            ],
         ];
     }
 
@@ -76,6 +92,9 @@ class Plugin extends PluginBase
 
     public function registerSettings()
     {
+        $active = Tenant::instance()
+            ->active();
+
         return [
             'tenants' => [
                 'label'       => 'Tenants',
@@ -86,7 +105,17 @@ class Plugin extends PluginBase
                 'order'       => 500,
                 'keywords'    => 'tenants multi tenancy saas organisation',
                 'permissions' => ['kloos.saas.manage_tenants'],
-            ]
+            ],
+            'my-tenant' => [
+                'label'       => 'kloos.saas::lang.menu.own_tenant',
+                'description' => 'kloos.saas::lang.menu.own_tenant',
+                'category'    => 'Tenants',
+                'icon'        => 'icon-building',
+                'url'         => Backend::url('kloos/saas/tenants/update/' . ($active ? $active->id : '')),
+                'order'       => 500,
+                'keywords'    => 'tenants multi tenancy saas organisation',
+                'permissions' => ['kloos.saas.manage_own_tenant'],
+            ],
         ];
     }
 }

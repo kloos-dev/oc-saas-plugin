@@ -5,6 +5,10 @@
         'author'        => 'Sebastiaan Kloos',
     ],
 
+    'menu' => [
+        'own_tenant'    => 'My subscription',
+    ],
+
     'scoreboard' => [
         'backend_users' => 'Backend users',
     ],
@@ -29,9 +33,13 @@
         'slug' => 'Slug',
         'image' => 'Image',
         'is_active' => 'Is active?',
+        'settings_title' => 'Title',
+        'settings_lead' => 'Lead',
+        'settings_description' => 'Description',
     ],
 
     'tab' => [
         'users' => 'Users',
+        'settings' => 'Settings',
     ],
 ];

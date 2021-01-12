@@ -10,10 +10,12 @@ fields:
         context:
             - preview
             - update
+        permissions: kloos.saas.manage_tenants
     name:
         label: kloos.saas::lang.fields.name
         span: left
         type: text
+        permissions: kloos.saas.manage_tenants
     slug:
         label: kloos.saas::lang.fields.slug
         span: right
@@ -21,14 +23,17 @@ fields:
         preset:
             field: name
             type: slug
+        permissions: kloos.saas.manage_tenants
     domain:
         label: kloos.saas::lang.fields.domain
         span: left
         type: text
+        permissions: kloos.saas.manage_tenants
 
 tabs:
     icons:
         kloos.saas::lang.tab.users: icon-users
+        kloos.saas::lang.tab.settings: icon-cogs
 
     fields:
         users:
@@ -36,6 +41,21 @@ tabs:
             type: partial
             path: field_users
             tab: kloos.saas::lang.tab.users
+        settings[title]:
+            label: kloos.saas::lang.fields.settings_title
+            span: left
+            type: text
+            tab: kloos.saas::lang.tab.settings
+        settings[lead]:
+            label: kloos.saas::lang.fields.settings_lead
+            span: left
+            type: text
+            tab: kloos.saas::lang.tab.settings
+        settings[description]:
+            label: kloos.saas::lang.fields.settings_description
+            span: left
+            type: richeditor
+            tab: kloos.saas::lang.tab.settings
 
 secondaryTabs:
     fields:
@@ -49,3 +69,4 @@ secondaryTabs:
             span: full
             type: switch
             default: true
+            permissions: manage_tenants
