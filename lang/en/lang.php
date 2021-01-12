@@ -36,10 +36,13 @@
         'settings_title' => 'Title',
         'settings_lead' => 'Lead',
         'settings_description' => 'Description',
+        'settings_ios_app_url' => 'iOS app url',
+        'settings_android_app_url' => 'Android app url',
     ],
 
     'tab' => [
         'users' => 'Users',
         'settings' => 'Settings',
+        'app' => 'Mobile app',
     ],
 ];

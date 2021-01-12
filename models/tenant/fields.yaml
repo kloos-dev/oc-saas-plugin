@@ -34,6 +34,7 @@ tabs:
     icons:
         kloos.saas::lang.tab.users: icon-users
         kloos.saas::lang.tab.settings: icon-cogs
+        kloos.saas::lang.tab.app: icon-mobile
 
     fields:
         users:
@@ -56,6 +57,16 @@ tabs:
             span: left
             type: richeditor
             tab: kloos.saas::lang.tab.settings
+        settings[ios_app_url]:
+            label: kloos.saas::lang.fields.settings_ios_app_url
+            span: left
+            type: text
+            tab: kloos.saas::lang.tab.app
+        settings[android_app_url]:
+            label: kloos.saas::lang.fields.settings_android_app_url
+            span: left
+            type: text
+            tab: kloos.saas::lang.tab.app
 
 secondaryTabs:
     fields:
