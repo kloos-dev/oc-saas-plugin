@@ -14,12 +14,14 @@ fields:
     name:
         label: kloos.saas::lang.fields.name
         span: left
+        required: true
         type: text
         permissions: kloos.saas.manage_tenants
     slug:
         label: kloos.saas::lang.fields.slug
         span: right
         type: text
+        required: true
         preset:
             field: name
             type: slug
@@ -27,6 +29,8 @@ fields:
     domain:
         label: kloos.saas::lang.fields.domain
         span: left
+        required: true
+        placeholder: oc.learnkit.dev
         type: text
         permissions: kloos.saas.manage_tenants
 
