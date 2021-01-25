@@ -50,6 +50,10 @@ class Tenants extends Controller
 
         BackendMenu::setContext('October.System', 'system', 'settings');
 
+        if (!$this->user) {
+            return;
+        }
+
         if ($this->user->hasPermission('kloos.saas.manage_own_tenant') && !$this->user->isSuperUser()) {
             SettingsManager::setContext('Kloos.Saas', 'my-tenant');
         } else {

@@ -10,7 +10,7 @@ class AttachedToTenant extends ExtensionBase
 {
     protected $parent;
 
-    public function __construct(Model $parent)
+    public function __construct($parent)
     {
         $this->parent = $parent;
         $this->attachModelToTenantModel();
