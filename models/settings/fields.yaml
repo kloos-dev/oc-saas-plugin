@@ -1,15 +1,28 @@
-fields:
-  groups:
-    label: kloos.saas::lang.fields.groups
-    type: repeater
-    span: left
-    form:
-      fields:
-        code:
-          label: kloos.saas::lang.fields.code
-          type: text
-          span: full
-        label:
-          label: kloos.saas::lang.fields.label
-          type: text
-          span: full
+tabs:
+  fields:
+    resolvers:
+      label: kloos.saas::lang.fields.resolvers
+      type: repeater
+      span: left
+      tab: Setup
+      form:
+        fields:
+          resolver:
+            label: kloos.saas::lang.fields.resolver
+            span: full
+            type: dropdown
+    groups:
+      label: kloos.saas::lang.fields.groups
+      type: repeater
+      span: left
+      tab: Groups
+      form:
+        fields:
+          code:
+            label: kloos.saas::lang.fields.code
+            type: text
+            span: full
+          label:
+            label: kloos.saas::lang.fields.label
+            type: text
+            span: full

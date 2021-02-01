@@ -1,6 +1,7 @@
 <?php namespace Kloos\Saas\Models;
 
 use Model;
+use Kloos\Saas\Classes\Helper\ResolverHelper;
 
 class Settings extends Model
 {
@@ -11,4 +12,9 @@ class Settings extends Model
 
     // Reference to field configuration
     public $settingsFields = 'fields.yaml';
+
+    public function getResolverOptions()
+    {
+        return ResolverHelper::instance()->getOptions();
+    }
 }

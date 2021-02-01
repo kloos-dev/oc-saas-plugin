@@ -100,6 +100,11 @@ class Tenant extends Model
         return static::where('domain', $domainName)->first();
     }
 
+    public static function byUser($user)
+    {
+        return $user->tenants->first();
+    }
+
     public static function bySlug($slug)
     {
         return static::where('slug', $slug)->first();

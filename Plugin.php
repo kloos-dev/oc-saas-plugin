@@ -6,13 +6,18 @@ use BackendMenu;
 use BackendAuth;
 use System\Classes\PluginBase;
 use Kloos\Saas\Classes\Tenant;
+use Illuminate\Routing\Router;
 use Kloos\Saas\Console\FreshTenant;
 use Kloos\Saas\Console\MigrateTenant;
+use Kloos\Saas\Classes\Resolver\User;
 use Kloos\Saas\Classes\Extend\CmsPage;
+use Kloos\Saas\Classes\Resolver\Domain;
 use Kloos\Saas\Classes\Extend\ExtendTenant;
 use Kloos\Saas\Classes\Extend\RelatedModel;
+use Kloos\Saas\Classes\Helper\ResolverHelper;
 use Kloos\Saas\Classes\Extend\ExtendBackendUser;
 use Kloos\Saas\Classes\Extend\ExtendRainLabUser;
+
 
 class Plugin extends PluginBase
 {
@@ -29,12 +34,15 @@ class Plugin extends PluginBase
 
     public function register()
     {
-        $this->app['Illuminate\Contracts\Http\Kernel']
-            ->pushMiddleware('Kloos\Saas\Classes\ResolveTenantByDomainMiddleware');
+        $router = $this->app['router'];
+        $router->pushMiddlewareToGroup('web', 'Kloos\Saas\Classes\ResolverMiddleware');
     }
 
     public function boot()
     {
+        // Load resolvers
+        $rh = ResolverHelper::instance();
+
         BackendMenu::registerCallback(function (Backend\Classes\NavigationManager $manager) {
             $user = BackendAuth::getUser();
 
@@ -88,6 +96,14 @@ class Plugin extends PluginBase
 
     public function registerFormWidgets()
     {
+    }
+
+    public function registerResolvers()
+    {
+        return [
+            Domain::class,
+            User::class,
+        ];
     }
 
     public function registerSettings()

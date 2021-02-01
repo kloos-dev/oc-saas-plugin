@@ -29,12 +29,7 @@ class Tenant
 
     public function active()
     {
-        if (Session::has('active_tenant_slug')) {
-            $slug = Session::get('active_tenant_slug');
-            return TenantModel::bySlug($slug);
-        } else {
-            return $this->activeTenant;
-        }
+        return $this->activeTenant;
     }
 
     public function forget()

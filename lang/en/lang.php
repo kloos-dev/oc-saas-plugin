@@ -44,6 +44,8 @@
         'label'                     => 'Label',
         'code'                      => 'Code',
         'group'                     => 'Group',
+        'resolvers'                 => 'Resolvers',
+        'resolver'                  => 'Resolver',
     ],
 
     'tab' => [
