@@ -116,6 +116,16 @@ class Plugin extends PluginBase
                 'keywords'    => 'tenants multi tenancy saas organisation',
                 'permissions' => ['kloos.saas.manage_own_tenant'],
             ],
+            'tenant_settings' => [
+                'label'         => 'Tenant settings',
+                'description'   => 'Manage tenant settings',
+                'category'      => 'Tenants',
+                'icon'          => 'icon-cog',
+                'class'         => 'Kloos\Saas\Models\Settings',
+                'order'         => 500,
+                'keywords'      => 'tenants settings multi tenant tenancy saas organisation',
+                'permissions'   => ['kloos.saas.manage_tenants'],
+            ],
         ];
     }
 }

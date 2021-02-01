@@ -40,6 +40,10 @@
         'settings_ios_app_url'      => 'iOS app url',
         'settings_android_app_url'  => 'Android app url',
         'is_landlord'               => 'Is landlord',
+        'groups'                    => 'Groups',
+        'label'                     => 'Label',
+        'code'                      => 'Code',
+        'group'                     => 'Group',
     ],
 
     'tab' => [

@@ -15,3 +15,6 @@
 1.0.6:
   - Added landlord setting to tenants
   - update_tenants_table1.php
+1.0.7:
+  - Added settings to the plugin containing groups for tenants
+  - update_tenants_table2.php

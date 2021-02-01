@@ -1,0 +1,15 @@
+fields:
+  groups:
+    label: kloos.saas::lang.fields.groups
+    type: repeater
+    span: left
+    form:
+      fields:
+        code:
+          label: kloos.saas::lang.fields.code
+          type: text
+          span: full
+        label:
+          label: kloos.saas::lang.fields.label
+          type: text
+          span: full

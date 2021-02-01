@@ -2,7 +2,6 @@
 
 use Model;
 use Backend\Models\User;
-use Kloos\Multitenancy\Classes\Item\Database;
 
 /**
  * Tenant Model
@@ -104,5 +103,10 @@ class Tenant extends Model
     public static function bySlug($slug)
     {
         return static::where('slug', $slug)->first();
+    }
+
+    public function getGroupOptions()
+    {
+        return collect(Settings::get('groups'))->pluck('label', 'code')->toArray();
     }
 }

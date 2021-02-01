@@ -91,3 +91,8 @@ secondaryTabs:
             type: checkbox
             default: false
             permissions: manage_tenants
+        group:
+            label: kloos.saas::lang.fields.group
+            span: full
+            type: radio
+            permissions: manage_tenants
