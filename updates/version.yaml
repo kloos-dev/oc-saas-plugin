@@ -12,3 +12,6 @@
 1.0.5:
   - Added polymorphic relations for tenants for single database usage
   - create_tenants_relations_table.php
+1.0.6:
+  - Added landlord setting to tenants
+  - update_tenants_table1.php

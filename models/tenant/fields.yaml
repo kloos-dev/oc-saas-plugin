@@ -85,3 +85,9 @@ secondaryTabs:
             type: switch
             default: true
             permissions: manage_tenants
+        is_landlord:
+            label: kloos.saas::lang.fields.is_landlord
+            span: full
+            type: checkbox
+            default: false
+            permissions: manage_tenants

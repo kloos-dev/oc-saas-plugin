@@ -2,9 +2,10 @@
 
 use Model;
 use Form as FormHelper;
-use Kloos\Saas\Models\Tenant;
+use Kloos\Saas\Classes\Tenant;
 use Kloos\Saas\Classes\TenantScope;
 use October\Rain\Extension\ExtensionBase;
+use Kloos\Saas\Models\Tenant as TenantModel;
 
 class AttachedToTenant extends ExtensionBase
 {
@@ -16,11 +17,11 @@ class AttachedToTenant extends ExtensionBase
         $this->attachModelToTenantModel();
         $model = $this->parent;
 
-        \Kloos\Saas\Classes\Tenant::instance()
+        Tenant::instance()
             ->registerModel(get_class($this->parent));
 
         $this->parent->bindEvent('model.beforeCreate', function () use ($model) {
-            $active = \Kloos\Saas\Classes\Tenant::instance()->active();
+            $active = Tenant::instance()->active();
             $sessionKey = FormHelper::getSessionKey();
 
             if ($active && !$model->tenants->contains($active)) {
@@ -28,8 +29,9 @@ class AttachedToTenant extends ExtensionBase
             }
         }, 1);
 
+        $tenant = Tenant::instance()->active();
 
-        if (!$this->parent->scopeBlacklist && \Kloos\Saas\Classes\Tenant::instance()->active()) {
+        if (!$this->parent->scopeBlacklist && $tenant && !$tenant->is_landlord) {
             $this->registerGlobalScope();
         }
     }
@@ -42,7 +44,7 @@ class AttachedToTenant extends ExtensionBase
     protected function attachModelToTenantModel()
     {
         $this->parent->morphToMany['tenants'] = [
-            Tenant::class,
+            TenantModel::class,
             'name' => 'tenant_relation',
             'table' => 'kloos_saas_tenants_relations',
         ];
