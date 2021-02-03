@@ -11,7 +11,7 @@ class ResolverMiddleware
         $tenant = null;
 
         // Loop through all the resolvers
-        foreach (Settings::get('resolvers') as $resolver) {
+        foreach (Settings::get('resolvers', []) as $resolver) {
             $resolver = new $resolver['resolver'];
             $tenant = $resolver->run($request);
         }
