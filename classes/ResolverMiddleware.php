@@ -17,8 +17,6 @@ class ResolverMiddleware
         }
 
         if ($tenant) {
-            //ray($tenant);
-
             Tenant::instance()->switch($tenant);
         } else {
             // Todo: There is something wrong. Show a message...
