@@ -71,7 +71,6 @@ class Tenant
 
         foreach ($this->getModels() as $model) {
             $explodedModelName = explode('\\', $model);
-            $modelName = 'Test';
 
             // Add the model to the config
             $modelConfig = [
